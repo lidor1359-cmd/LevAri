@@ -1,328 +1,329 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בין לב לארי - קליניקה לעיסויים בבאר שבע</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
-
-        body {
-            font-family: 'Heebo', sans-serif;
-        }
-
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .warm-gradient {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .refresh-gradient {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-
-        .card-shadow {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .pulse-slow {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
+<html class="light" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>בין לב לארי - קליניקת עיסויים בבאר שבע</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#e89c30",
+            "secondary": "#a86448",
+            "accent": "#f3eee7",
+            "background-light": "#fdfaf6",
+            "background-dark": "#211a11",
+            "text-light": "#1b150e",
+            "text-dark": "#f8f7f6",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "1rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      direction: rtl;
+    }
+    .hover-glow:hover {
+      box-shadow: 0 0 15px rgba(232, 156, 48, 0.4);
+      transform: translateY(-2px);
+      transition: all 0.3s ease-in-out;
+    }
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 50%;
+      height: 2px;
+      background-color: #e89c30;
+    }
+    #snowfall-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-    <div id="root"></div>
-
-    <script type="text/babel">
-        const { useState } = React;
-
-        function LandingPage() {
-            const [formData, setFormData] = useState({
-                name: '',
-                phone: '',
-                preferredTime: ''
-            });
-            const [submitted, setSubmitted] = useState(false);
-
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                console.log('Form submitted:', formData);
-                setSubmitted(true);
-                setTimeout(() => setSubmitted(false), 3000);
-            };
-
-            const testimonials = [
-                {
-                    name: "רותם כ.",
-                    text: "אהרון הוא מקצוען אמיתי! העיסוי היה בדיוק מה שהייתי צריכה אחרי שבוע מלחיץ של מבחנים. המחירים סבירים מאוד לסטודנטים 🙏",
-                    rating: 5
-                },
-                {
-                    name: "יונתן ש.",
-                    text: "הגעתי עם כאבי גב קשים מהישיבה ארוכות בספרייה. יצאתי כמו חדש! אהרון מבין את הגוף ויודע בדיוק איפה ללחוץ. מומלץ בחום! ⭐",
-                    rating: 5
-                },
-                {
-                    name: "מיכל ל.",
-                    text: "אווירה מדהימה וטיפול מקצועי. אהרון ממש מקשיב ומתאים את העיסוי לצרכים שלי. הקליניקה נוחה להגעה וזמינות גמישה 💆‍♀️",
-                    rating: 5
-                }
-            ];
-
-            return (
-                <div className="min-h-screen">
-                    {/* Hero Section */}
-                    <header className="gradient-bg text-white py-20 px-4 text-center relative overflow-hidden">
-                        <div className="absolute top-10 right-10 text-6xl float-animation">🌟</div>
-                        <div className="absolute bottom-10 left-10 text-6xl float-animation" style={{animationDelay: '1s'}}>✨</div>
-
-                        <div className="max-w-4xl mx-auto fade-in">
-                            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                                בין לב לארי 💙
-                            </h1>
-                            <p className="text-xl md:text-2xl mb-8 leading-relaxed">
-                                מרגיש את הלחץ? הגיע הזמן להרפות 🧘‍♂️
-                            </p>
-
-                            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6 md:p-8 text-right max-w-3xl mx-auto card-shadow">
-                                <p className="text-lg leading-relaxed">
-                                    היי! אני אהרון לב ארי, בן 28, ירושלמי במקור 🏙️
-                                </p>
-                                <p className="text-lg leading-relaxed mt-4">
-                                    אחרי שנתיים שלמות במילואים מ-7.10.2023, שבמהלכן המשכתי את הלימודים לפסיכותרפיה
-                                    (שנה רביעית במכללה האקדמית ת"א יפו), סיימתי לבסוף את השירות הצבאי לתקופה הקרובה 🎉
-                                </p>
-                                <p className="text-lg leading-relaxed mt-4">
-                                    והחלטתי להגיע לבאר שבע ולפתוח משהו מיוחד במיוחד בשבילכם -
-                                    קליניקה לעיסויים במחירים סטודנטיאליים!
-                                </p>
-                                <p className="text-xl mt-6 font-semibold">
-                                    כי אני יודע בדיוק איך זה להיות בסטרס ולחץ מהלימודים 📚💪
-                                </p>
-                            </div>
-                        </div>
-                    </header>
-
-                    {/* Services Section */}
-                    <section className="py-16 px-4">
-                        <div className="max-w-6xl mx-auto">
-                            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-                                למה דווקא כאן? 🤔
-                            </h2>
-
-                            <div className="grid md:grid-cols-3 gap-8">
-                                <div className="bg-white rounded-2xl p-8 card-shadow hover-scale text-center">
-                                    <div className="text-5xl mb-4">💰</div>
-                                    <h3 className="text-2xl font-bold mb-4 text-purple-600">מחירים סטודנטיאליים</h3>
-                                    <p className="text-gray-700">
-                                        מחירים שמתחשבים בתקציב הסטודנטיאלי - כי כולם צריכים להרגיש טוב!
-                                    </p>
-                                </div>
-
-                                <div className="bg-white rounded-2xl p-8 card-shadow hover-scale text-center">
-                                    <div className="text-5xl mb-4">⏰</div>
-                                    <h3 className="text-2xl font-bold mb-4 text-blue-600">זמינות גמישה</h3>
-                                    <p className="text-gray-700">
-                                        בוקר, צהריים או ערב - נתאים את העיסוי למערכת השעות שלך
-                                    </p>
-                                </div>
-
-                                <div className="bg-white rounded-2xl p-8 card-shadow hover-scale text-center">
-                                    <div className="text-5xl mb-4">🎓</div>
-                                    <h3 className="text-2xl font-bold mb-4 text-pink-600">מבין אותך</h3>
-                                    <p className="text-gray-700">
-                                        כסטודנט לפסיכותרפיה, אני מבין את החיבור בין הגוף והנפש
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Testimonials Section */}
-                    <section className="py-16 px-4 bg-gradient-to-r from-purple-100 to-pink-100">
-                        <div className="max-w-6xl mx-auto">
-                            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-                                מה אומרים עלינו? 💬
-                            </h2>
-
-                            <div className="grid md:grid-cols-3 gap-8">
-                                {testimonials.map((testimonial, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white rounded-2xl p-6 card-shadow hover-scale"
-                                        style={{animationDelay: `${index * 0.2}s`}}
-                                    >
-                                        <div className="flex mb-3">
-                                            {[...Array(testimonial.rating)].map((_, i) => (
-                                                <span key={i} className="text-yellow-400 text-xl">⭐</span>
-                                            ))}
-                                        </div>
-                                        <p className="text-gray-700 mb-4 text-right leading-relaxed">
-                                            "{testimonial.text}"
-                                        </p>
-                                        <p className="font-semibold text-purple-600 text-right">
-                                            - {testimonial.name}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Contact Form Section */}
-                    <section className="py-16 px-4">
-                        <div className="max-w-2xl mx-auto">
-                            <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">
-                                בואו נקבע תור! 📅
-                            </h2>
-
-                            <div className="bg-white rounded-2xl p-8 card-shadow">
-                                {submitted ? (
-                                    <div className="text-center py-8 fade-in">
-                                        <div className="text-6xl mb-4">✅</div>
-                                        <h3 className="text-2xl font-bold text-green-600 mb-2">תודה!</h3>
-                                        <p className="text-gray-700">אחזור אליך בהקדם 😊</p>
-                                    </div>
-                                ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div>
-                                            <label className="block text-right text-gray-700 font-semibold mb-2">
-                                                שם מלא
-                                            </label>
-                                            <input
-                                                type="text"
-                                                required
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none text-right"
-                                                value={formData.name}
-                                                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                                placeholder="איך קוראים לך?"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-right text-gray-700 font-semibold mb-2">
-                                                טלפון
-                                            </label>
-                                            <input
-                                                type="tel"
-                                                required
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none text-right"
-                                                value={formData.phone}
-                                                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                                                placeholder="050-1234567"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-right text-gray-700 font-semibold mb-2">
-                                                זמן מועדף
-                                            </label>
-                                            <select
-                                                required
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none text-right"
-                                                value={formData.preferredTime}
-                                                onChange={(e) => setFormData({...formData, preferredTime: e.target.value})}
-                                            >
-                                                <option value="">בחר זמן...</option>
-                                                <option value="morning">בוקר (8:00-12:00) ☀️</option>
-                                                <option value="noon">צהריים (12:00-16:00) 🌤️</option>
-                                                <option value="evening">ערב (16:00-21:00) 🌙</option>
-                                            </select>
-                                        </div>
-
-                                        <button
-                                            type="submit"
-                                            className="w-full warm-gradient text-white font-bold py-4 rounded-lg hover:opacity-90 transition-opacity text-lg"
-                                        >
-                                            שלח פרטים ואחזור אליך 🚀
-                                        </button>
-                                    </form>
-                                )}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Location & Contact Section */}
-                    <section className="py-16 px-4 refresh-gradient text-white">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <h2 className="text-4xl font-bold mb-8">איפה אתם מוצאים אותנו? 📍</h2>
-
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8">
-                                    <div className="text-5xl mb-4">📍</div>
-                                    <h3 className="text-2xl font-bold mb-4">הכתובת</h3>
-                                    <p className="text-xl">סוקולוב 32, באר שבע</p>
-                                    <p className="mt-2">נוח להגיע מהאוניברסיטה!</p>
-                                </div>
-
-                                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8">
-                                    <div className="text-5xl mb-4">📱</div>
-                                    <h3 className="text-2xl font-bold mb-4">טלפון</h3>
-                                    <a href="tel:0558861571" className="text-2xl font-bold hover:underline">
-                                        055-8861571
-                                    </a>
-                                    <p className="mt-2">זמין לווצאפ!</p>
-                                </div>
-                            </div>
-
-                            <div className="mt-12 bg-white/20 backdrop-blur-md rounded-2xl p-8">
-                                <p className="text-xl leading-relaxed">
-                                    💆‍♂️ הרגישו חופשיים לפנות בכל שאלה או לתאם תור 💆‍♀️
-                                </p>
-                                <p className="text-lg mt-4">
-                                    אני כאן כדי לעזור לכם להרגיש טוב יותר 💙
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Footer */}
-                    <footer className="bg-gray-800 text-white py-8 px-4 text-center">
-                        <p className="text-lg mb-2">בין לב לארי - קליניקה לעיסויים 🌿</p>
-                        <p className="text-gray-400">כי כל אחד ראוי להרגיש טוב</p>
-                        <div className="mt-4 text-3xl">
-                            <span className="mx-2">💙</span>
-                            <span className="mx-2">🙏</span>
-                            <span className="mx-2">✨</span>
-                        </div>
-                    </footer>
+<body class="bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<canvas id="snowfall-canvas"></canvas>
+<div class="relative flex h-auto w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<main class="flex flex-1 justify-center py-5 sm:px-4 md:px-10 lg:px-20 xl:px-40">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<div class="@container">
+<div class="@[480px]:p-4">
+<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 text-center shadow-lg" data-alt="Serene massage setting with warm lighting, folded towels, and massage oil" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkkzjqoM5rry97JzlKNBrGdsZsOsJH6JtOmznqOkk_hb29fWAds3-LJF6pDQKudeIqH3Eg1FaBGTpDllOOL0Xt_od4-6Uqh16PkCNDm6DBtp4ukWelLOwK9XPaqT8PXnk5-YyqragAvfe6JTCPShIvj06eqoqn8Bky1mbuHRFRXjPOajCnxv7AsxX6YbSxO8iyN-UaMOlCsOmGcM_9t79d2UmmG2scayPAu5bE3fLx9H7k2znShSNSF1sEurTss_-m5apodyAWwhSy");'>
+<div class="flex flex-col gap-4">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                    בין לב לארי
+                  </h1>
+<h2 class="text-white/90 text-lg font-normal leading-normal @[480px]:text-xl @[480px]:font-normal @[480px]:leading-normal">
+                    הפסקה שלווה לגוף ולנפש בקליניקת העיסויים שלך בבאר שבע 🧘‍♀️
+                  </h2>
+</div>
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover-glow" href="#contact-form">
+<span class="truncate">לקביעת תור וייעוץ</span>
+</a>
+</div>
+</div>
+</div>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">נעים להכיר, אני אהרון</h2>
+<div class="p-4">
+<div class="flex flex-col items-center justify-between gap-8 rounded-xl bg-accent/60 dark:bg-gray-800/50 p-6 backdrop-blur-sm border border-white/50">
+<div class="flex flex-col gap-1 flex-[2_2_0px] text-center">
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">הסיפור שלי ✨</p>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                  ירושלמי במקור, שירתתי במילואים מאז ה-7.10, המשכתי את לימודיי בפסיכותרפיה ובשעה טובה סיימתי מילואים ועברתי לבאר שבע. אני כאן כדי להציע לכם רגע של שקט ונחת מהלחץ של היום יום. 🫂
+                </p>
+</div>
+</div>
+</div>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">העיסויים שלי (במחירים שמתאימים לכל כיס)</h2>
+<div class="grid grid-cols-[repeat(auto-fit,minmax(228px,1fr))] gap-4 px-4 py-3">
+<div class="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
+<div class="flex flex-col gap-1">
+<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי שוודי 🌿</h3>
+<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
+<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">170₪</span>
+<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
+</p>
+</div>
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent dark:bg-gray-700 text-text-light dark:text-text-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20" href="#contact-form">
+<span class="truncate">לקביעת תור</span>
+</a>
+<div class="flex flex-col gap-2">
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> הפגת מתחים
                 </div>
-            );
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> המרצת מחזור הדם
+                </div>
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שחרור והרגעה
+                </div>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-4 rounded-xl border-2 border-solid border-primary bg-background-light/80 dark:bg-background-dark/80 p-6 relative hover-glow backdrop-blur-sm">
+<p class="absolute -top-3.5 right-4 text-white text-xs font-medium leading-normal tracking-[0.015em] rounded-full bg-secondary px-3 py-[3px] text-center">הפופולרי ביותר ⭐</p>
+<div class="flex flex-col gap-1">
+<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי רקמות עמוק 💪</h3>
+<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
+<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">200₪</span>
+<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
+</p>
+</div>
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90" href="#contact-form">
+<span class="truncate">לקביעת תור</span>
+</a>
+<div class="flex flex-col gap-2">
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שחרור שרירים תפוסים
+                </div>
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> טיפול בכאב כרוני
+                </div>
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שיפור טווחי תנועה
+                </div>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
+<div class="flex flex-col gap-1">
+<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי משולב ☯️</h3>
+<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
+<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">190₪</span>
+<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
+</p>
+</div>
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent dark:bg-gray-700 text-text-light dark:text-text-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20" href="#contact-form">
+<span class="truncate">לקביעת תור</span>
+</a>
+<div class="flex flex-col gap-2">
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> טכניקות משולבות
+                </div>
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> מותאם אישית
+                </div>
+<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> איזון גוף ונפש
+                </div>
+</div>
+</div>
+</div>
+<div class="px-4 py-3">
+<div class="flex flex-col md:flex-row items-center gap-4 rounded-xl border border-dashed border-primary bg-primary/10 dark:bg-gray-800/50 p-6 text-center md:text-right">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-4xl">groups</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold">מבצע חבר מביא חבר! 🤝</h3>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal">הביאו חבר/ה ותקבלו שניכם הנחה של 20₪ על העיסוי הבא!</p>
+</div>
+</div>
+</div>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">מה הלקוחות מספרים</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-3">
+<div class="flex flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+</div>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal italic">"אחרי שבוע מתיש של מבחנים, העיסוי אצל אהרון היה בדיוק מה שהייתי צריכה. יצאתי כמו חדשה, מומלץ בחום!"</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">דנה כ.</p>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+</div>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal italic">"אהרון מקצוען אמיתי, יודע בדיוק איפה ללחוץ. הרגשתי שהכתפיים התפוסות שלי סוף סוף השתחררו. אחזור בטוח."</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">יותם ל.</p>
+</div>
+</div>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 scroll-mt-20 section-title" id="contact-form">מוכנים להירגע? דברו איתי 💌</h2>
+<div class="p-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+<div class="flex flex-col gap-4">
+<form class="flex flex-col gap-4">
+<input class="w-full h-10 px-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="שם מלא" type="text"/>
+<input class="w-full h-10 px-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="מספר טלפון" type="tel"/>
+<textarea class="w-full p-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="הודעה (אופציונלי)" rows="4"></textarea>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover-glow" type="submit">
+<span class="truncate">שליחת פניה</span>
+</button>
+</form>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+<span class="text-text-light dark:text-text-dark text-base font-semibold">סוקולוv 32, באר שבע</span>
+</div>
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+<iframe allowfullscreen="" class="w-full h-full" data-location="Sokolov 32, Be'er Sheva" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.942767098739!2d34.78761767562013!3d31.717140974120364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x150266052f9547d7%3A0x633a6b5a3c98c114!2sSokolov%2032%2C%20Be'er%20Sheva!5e0!3m2!1sen!2sil!4v1700487428131!5m2!1sen!2sil" style="border:0;"></iframe>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">call</span>
+<a class="text-text-light dark:text-text-dark text-base font-semibold" href="tel:055-8861571">055-8861571</a>
+</div>
+</div>
+</div>
+</div>
+<footer class="text-center py-8 mt-12 border-t border-[#e7ddd0] dark:border-gray-700">
+<p class="text-secondary dark:text-gray-500 text-sm">© 2024 בין לב לארי. כל הזכויות שמורות.</p>
+</footer>
+</div>
+</main>
+</div>
+</div>
+<script>
+  // Snowfall effect
+  (function() {
+    const canvas = document.getElementById('snowfall-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const particleCount = 100;
+    const minRadius = 0.2;
+    const maxRadius = 5;
+    const speed = 0.5;
+    const color = '#ADD8E6'; // Light blue
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.radius = minRadius + Math.random() * (maxRadius - minRadius);
+        this.speedY = speed + Math.random() * speed;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.opacity = 0.3 + Math.random() * 0.7;
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+
+        if (this.y > canvas.height) {
+          this.reset();
+          this.y = -10;
         }
 
-        ReactDOM.render(<LandingPage />, document.getElementById('root'));
-    </script>
-</body>
-</html>
+        if (this.x > canvas.width || this.x < 0) {
+          this.x = Math.random() * canvas.width;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.globalAlpha = this.opacity;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  })();
+</script>
+</body></html>
