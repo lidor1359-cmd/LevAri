@@ -2,295 +2,291 @@
 <html class="light" lang="he"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>בין לב לארי - קליניקת עיסויים בבאר שבע</title>
+<title>לב ארי - גוף · נשימה · תודעה | קליניקת עיסויים בבאר שבע</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
 <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "primary": "#e89c30",
-            "secondary": "#a86448",
-            "accent": "#f3eee7",
-            "background-light": "#fdfaf6",
-            "background-dark": "#211a11",
-            "text-light": "#1b150e",
-            "text-dark": "#f8f7f6",
+            "primary": "#bca38f",
+            "background-light": "#f5f3f0",
+            "background-dark": "#2d2823",
+            "text-light": "#3d352e",
+            "text-muted-light": "#8b7e74",
+            "text-dark": "#f5f3f0",
+            "text-muted-dark": "#a99f96",
+            "card-light": "#ffffff",
+            "card-dark": "#3d352e",
+            "icon-bg-light": "#ece7e2",
+            "icon-bg-dark": "#52483f"
           },
           fontFamily: {
             "display": ["Manrope", "sans-serif"]
           },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "1rem",
-            "full": "9999px"
-          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
         },
       },
     }
   </script>
 <style>
     body {
-      direction: rtl;
+      min-height: max(884px, 100dvh);
     }
     .hover-glow:hover {
-      box-shadow: 0 0 15px rgba(232, 156, 48, 0.4);
+      box-shadow: 0 0 15px rgba(188, 163, 143, 0.5);
       transform: translateY(-2px);
       transition: all 0.3s ease-in-out;
     }
-    .section-title {
-      position: relative;
-      display: inline-block;
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      right: 0;
-      width: 50%;
-      height: 2px;
-      background-color: #e89c30;
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
     }
-    #stractium-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
+    .animate-spin-slow {
+      animation: spin-slow 30s linear infinite;
     }
-    .gradient-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
-      animation: float 20s ease-in-out infinite;
-    }
-    .blob-1 {
-      width: 400px;
-      height: 400px;
-      background: linear-gradient(45deg, #e89c30, #f3eee7);
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-    .blob-2 {
-      width: 350px;
-      height: 350px;
-      background: linear-gradient(135deg, #a86448, #fef8f0);
-      top: 50%;
-      right: 15%;
-      animation-delay: 5s;
-    }
-    .blob-3 {
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(225deg, #fdbf60, #ffedd5);
-      bottom: 20%;
-      left: 20%;
-      animation-delay: 10s;
-    }
-    @keyframes float {
-      0%, 100% {
-        transform: translate(0, 0) scale(1);
-      }
-      25% {
-        transform: translate(30px, -30px) scale(1.1);
-      }
-      50% {
-        transform: translate(-20px, 20px) scale(0.9);
-      }
-      75% {
-        transform: translate(40px, 10px) scale(1.05);
-      }
+    .animate-pulse-slow {
+      animation: pulse-slow 4s ease-in-out infinite;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-amber-50 via-rose-50 to-orange-50 dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<div id="stractium-bg">
-<div class="gradient-blob blob-1"></div>
-<div class="gradient-blob blob-2"></div>
-<div class="gradient-blob blob-3"></div>
-</div>
-<div class="relative flex h-auto w-full flex-col overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<main class="flex flex-1 justify-center py-5 sm:px-4 md:px-10 lg:px-20 xl:px-40">
-<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<body dir="rtl">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display group/design-root overflow-x-hidden">
+
+<!-- HeroSection -->
 <div class="@container">
-<div class="@[480px]:p-4">
-<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 text-center shadow-lg" data-alt="Serene massage setting with warm lighting, folded towels, and massage oil" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkkzjqoM5rry97JzlKNBrGdsZsOsJH6JtOmznqOkk_hb29fWAds3-LJF6pDQKudeIqH3Eg1FaBGTpDllOOL0Xt_od4-6Uqh16PkCNDm6DBtp4ukWelLOwK9XPaqT8PXnk5-YyqragAvfe6JTCPShIvj06eqoqn8Bky1mbuHRFRXjPOajCnxv7AsxX6YbSxO8iyN-UaMOlCsOmGcM_9t79d2UmmG2scayPAu5bE3fLx9H7k2znShSNSF1sEurTss_-m5apodyAWwhSy");'>
-<div class="flex flex-col gap-4">
-<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                    בין לב לארי
-                  </h1>
-<h2 class="text-white/90 text-lg font-normal leading-normal @[480px]:text-xl @[480px]:font-normal @[480px]:leading-normal">
-                    הפסקה שלווה לגוף ולנפש בקליניקת העיסויים שלך בבאר שבע 🧘‍♀️
-                  </h2>
+<div class="@[480px]:p-4 p-4">
+<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 rounded-xl items-center justify-center p-4" style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA4ntgOyFHRmm5oA3c_9pHqewUHYnRwpkdlh3UvNrS3_aH5_kHPn79qfmG0qQoUmHpOWab-382DiqEMayV8HGNRq91YFODdbVk_2ZrA6Vw5eFrQR7QZQPBaXGVD6Tfku-49mL4sxI-UJ3BllaOeeH2WIThESSIyh8iAlyrHDQ5PjPYM2HOa5QT7rpFjcoAlcE-fHJwH18iWGiCqD6KvtQn6cJn9AbXzF6mEvebEa5ymwdVnvNgTOR1esVu-Hv6aCpxm2iD5mMkMefWK");'>
+<div class="flex flex-col gap-6 text-center items-center">
+<!-- Logo -->
+<div class="w-28 h-28 @[480px]:w-36 @[480px]:h-36 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm p-3">
+<img src="logo.jpeg" alt="לב ארי" class="w-full h-full object-cover object-top" style="clip-path: inset(0 0 38% 0); transform: scale(1.6) translateY(12%);">
 </div>
-<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover-glow" href="#contact-form">
-<span class="truncate">לקביעת תור וייעוץ</span>
+<div class="relative">
+<h1 class="text-white text-5xl font-black leading-tight tracking-wide @[480px]:text-7xl drop-shadow-lg">
+לב ארי
+</h1>
+<div class="mt-3 flex items-center justify-center gap-3">
+<span class="h-px w-8 bg-gradient-to-r from-transparent to-white/60"></span>
+<p class="text-white/90 text-lg font-light tracking-[0.3em] @[480px]:text-xl uppercase">גוף · נשימה · תודעה</p>
+<span class="h-px w-8 bg-gradient-to-l from-transparent to-white/60"></span>
+</div>
+</div>
+</div>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי" target="_blank" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover-glow">
+<span class="truncate">הזמינו תור עכשיו</span>
 </a>
 </div>
 </div>
 </div>
-<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">נעים להכיר, אני אהרון</h2>
-<div class="p-4">
-<div class="flex flex-col items-center justify-between gap-8 rounded-xl bg-accent/60 dark:bg-gray-800/50 p-6 backdrop-blur-sm border border-white/50">
-<div class="flex flex-col gap-1 flex-[2_2_0px] text-center">
-<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">הסיפור שלי ✨</p>
-<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
-                  שלום! אני אהרון, בן 28, ירושלמי במקור וסטודנט שנה רביעית לפסיכותרפיה. שירתתי במילואים מאז ה-7.10 והמשכתי את לימודיי תוך כדי, ובשעה טובה סיימתי מילואים ועברתי לבאר שבע. אני כאן כדי להציע לכם רגע של שקט ונחת מהלחץ של היום יום, תוך שילוב של הידע הטיפולי והמגע המקצועי. 🫂
-                </p>
-</div>
-</div>
-</div>
-<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">העיסויים שלי (במחירים שמתאימים לכל כיס)</h2>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(228px,1fr))] gap-4 px-4 py-3">
-<div class="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
-<div class="flex flex-col gap-1">
-<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי שוודי 🌿</h3>
-<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
-<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">170₪</span>
-<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
+
+<!-- Philosophy Card -->
+<div class="p-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start bg-card-light dark:bg-card-dark overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover @xl:rounded-l-none @xl:rounded-r-xl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDetkI_ZxmjAndI_7ijFxUAyw4Tye1-7gn8YHoe3BXdJMWwxNZ5defa0QHM0wV430R0uH0mhqY_tEwxoa-tz4zMFWgHFCrvrMKQ7jcgrFOOX0ncPjYxeIpaBVem3kF3Cs0b_9MlsXfO2EkEgPWdFDbdqD6DjXgJp2P-Xhba3mkfxf7imyHxaqKQCIJXoyj3YtBZa6eGZEUw99-au9-x99HinVNcIl9ve8pisINwvgXtFM8Fdo2bIurrXhEn9pTBSAp_ws_U4qlwkrvV");'></div>
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-3 p-4 @xl:px-4">
+<p class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-[-0.015em]">להתחבר מחדש – לגוף, לנשימה, לתודעה, לעצמך.</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-relaxed">
+בקליניקה שלי תמצאו מרחב שמזמין אתכם להתחבר מחדש לעצמכם – לגוף שנותן נוכחות וחיבור לעצמנו ולעולם, לנשימה שמאפשרת זרימה, שיחרור ושלווה, לתודעה שנותנת ביטחון ובהירות, וחיבור לתחושות ולרגשות שקיימים בנו.
+</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-relaxed">
+כל טיפול, כל תנועה וכל מגע נבנה כדי ליצור מסע פנימי, שבו תוכלו לשחרר מה שמכביד, לחוות חיות ואנרגיה, ולהרגיש שלמים, אמיתיים ונוכחים ברגע.
 </p>
 </div>
-<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent dark:bg-gray-700 text-text-light dark:text-text-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20" href="#contact-form">
-<span class="truncate">לקביעת תור</span>
+</div>
+</div>
+
+<!-- "About Me" Section -->
+<div class="p-4 pt-4">
+<div class="flex flex-col items-center gap-4 rounded-xl bg-card-light dark:bg-card-dark p-6 text-center">
+<div>
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">נעים להכיר, אני אהרון ✨</h3>
+<p class="text-base text-text-muted-light dark:text-text-muted-dark mt-2">שלום! אני אהרון, בן 28, ירושלמי במקור וסטודנט שנה רביעית לפסיכותרפיה. שירתתי במילואים מאז ה-7.10 והמשכתי את לימודיי תוך כדי, ובשעה טובה סיימתי מילואים ועברתי לבאר שבע. אני כאן כדי להציע לכם רגע של שקט ונחת מהלחץ של היום יום, תוך שילוב של הידע הטיפולי והמגע המקצועי. 🫂</p>
+</div>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי" target="_blank" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-3 px-6 rounded-full transition-all hover-glow">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<span>דברו איתי בוואטסאפ</span>
 </a>
-<div class="flex flex-col gap-2">
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> הפגת מתחים
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> המרצת מחזור הדם
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שחרור והרגעה
-                </div>
 </div>
 </div>
-<div class="flex flex-1 flex-col gap-4 rounded-xl border-2 border-solid border-primary bg-background-light/80 dark:bg-background-dark/80 p-6 relative hover-glow backdrop-blur-sm">
-<p class="absolute -top-3.5 right-4 text-white text-xs font-medium leading-normal tracking-[0.015em] rounded-full bg-secondary px-3 py-[3px] text-center">הפופולרי ביותר ⭐</p>
-<div class="flex flex-col gap-1">
-<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי רקמות עמוק 💪</h3>
-<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
-<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">200₪</span>
-<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
-</p>
+
+<!-- SectionHeader: Services -->
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">מחירון</h2>
+
+<!-- Pricing Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
+<!-- Swedish Massage -->
+<div class="flex flex-col bg-card-light dark:bg-card-dark rounded-xl overflow-hidden hover-glow">
+<div class="bg-primary/10 p-4 text-center">
+<span class="material-symbols-outlined text-4xl text-primary">self_improvement</span>
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold mt-2">עיסוי שוודי</h3>
 </div>
-<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90" href="#contact-form">
-<span class="truncate">לקביעת תור</span>
-</a>
-<div class="flex flex-col gap-2">
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שחרור שרירים תפוסים
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> טיפול בכאב כרוני
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> שיפור טווחי תנועה
-                </div>
+<div class="p-4 flex flex-col flex-1">
+<div class="text-center mb-3">
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">60 דקות</p>
+<p class="text-text-light dark:text-text-dark text-3xl font-black mt-1">200<span class="text-lg">₪</span></p>
 </div>
+<div class="bg-green-100 dark:bg-green-900/30 rounded-lg p-2 text-center mb-3">
+<p class="text-green-700 dark:text-green-400 text-sm font-medium">לסטודנטים: 150₪</p>
+<p class="text-green-600 dark:text-green-500 text-xs">(בהצגת תעודת סטודנט)</p>
 </div>
-<div class="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
-<div class="flex flex-col gap-1">
-<h3 class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עיסוי משולב ☯️</h3>
-<p class="flex items-baseline gap-1 text-text-light dark:text-text-dark">
-<span class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">190₪</span>
-<span class="text-secondary dark:text-gray-400 text-base font-bold leading-tight">ל-50 דקות</span>
-</p>
-</div>
-<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent dark:bg-gray-700 text-text-light dark:text-text-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20" href="#contact-form">
-<span class="truncate">לקביעת תור</span>
-</a>
-<div class="flex flex-col gap-2">
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> טכניקות משולבות
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> מותאם אישית
-                </div>
-<div class="text-[13px] font-normal leading-normal flex items-center gap-3 text-secondary dark:text-gray-300">
-<span class="material-symbols-outlined text-primary dark:text-gray-300 text-base">check</span> איזון גוף ונפש
-                </div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm text-center mb-4">הפגת מתחים • המרצת מחזור הדם • שחרור והרגעה</p>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי%20שוודי" target="_blank" class="mt-auto flex items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:opacity-90 transition-all">הזמינו עכשיו</a>
 </div>
 </div>
+
+<!-- Combined Massage -->
+<div class="flex flex-col bg-card-light dark:bg-card-dark rounded-xl overflow-hidden hover-glow border-2 border-primary relative">
+<div class="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">הפופולרי ביותר</div>
+<div class="bg-primary/20 p-4 text-center">
+<span class="material-symbols-outlined text-4xl text-primary">spa</span>
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold mt-2">עיסוי משולב</h3>
 </div>
-<div class="px-4 py-3">
-<div class="flex flex-col md:flex-row items-center gap-4 rounded-xl border border-dashed border-primary bg-primary/10 dark:bg-gray-800/50 p-6 text-center md:text-right">
-<div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-4xl">groups</span>
+<div class="p-4 flex flex-col flex-1">
+<div class="text-center mb-3">
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">60 דקות</p>
+<p class="text-text-light dark:text-text-dark text-3xl font-black mt-1">220<span class="text-lg">₪</span></p>
 </div>
-<div class="flex flex-col gap-1">
-<h3 class="text-text-light dark:text-text-dark text-lg font-bold">מבצע חבר מביא חבר! 🤝</h3>
-<p class="text-secondary dark:text-gray-400 text-sm font-normal">הביאו חבר/ה ותקבלו שניכם הנחה של 20₪ על העיסוי הבא!</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm text-center mb-4">טכניקות משולבות • מותאם אישית • איזון גוף ונפש</p>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי%20משולב" target="_blank" class="mt-auto flex items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:opacity-90 transition-all">הזמינו עכשיו</a>
+</div>
+</div>
+
+<!-- Deep Tissue Massage -->
+<div class="flex flex-col bg-card-light dark:bg-card-dark rounded-xl overflow-hidden hover-glow">
+<div class="bg-primary/10 p-4 text-center">
+<span class="material-symbols-outlined text-4xl text-primary">sports_gymnastics</span>
+<h3 class="text-text-light dark:text-text-dark text-lg font-bold mt-2">עיסוי רקמות עמוק</h3>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="text-center mb-3">
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">60 דקות</p>
+<p class="text-text-light dark:text-text-dark text-3xl font-black mt-1">250<span class="text-lg">₪</span></p>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm text-center mb-4">שחרור שרירים תפוסים • טיפול בכאב כרוני • שיפור טווחי תנועה</p>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי%20רקמות%20עמוק" target="_blank" class="mt-auto flex items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:opacity-90 transition-all">הזמינו עכשיו</a>
 </div>
 </div>
 </div>
-<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 section-title">מה הלקוחות מספרים</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-3">
-<div class="flex flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
-<div class="flex items-center gap-2">
+
+
+<!-- Testimonials -->
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">מה הלקוחות מספרים</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
 <div class="flex text-primary">
 <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
 </div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"באתי לאהרון באמצע תקופת מבחנים כשהייתי על הפנים מלחץ. יצאתי מהעיסוי עם ראש נקי ותחושת רוגע שליוותה אותי עד המבחן. ממליצה לכל סטודנט!"</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">שירה מ. - סטודנטית לפסיכולוגיה</p>
 </div>
-<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal italic">"אחרי שבוע מתיש של מבחנים, העיסוי אצל אהרון היה בדיוק מה שהייתי צריכה. יצאתי כמו חדשה, מומלץ בחום!"</p>
-<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">דנה כ.</p>
-</div>
-<div class="flex flex-col gap-4 rounded-xl border border-solid border-[#e7ddd0]/80 dark:border-gray-700 bg-background-light/80 dark:bg-background-dark/80 p-6 hover-glow backdrop-blur-sm">
-<div class="flex items-center gap-2">
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
 <div class="flex text-primary">
 <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
 </div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"אחרי שעות של ישיבה בספרייה הגב שלי היה הרוס. אהרון שיחרר לי את כל הנקודות התפוסות ועזר לי להמשיך ללמוד בלי כאבים. שווה כל שקל!"</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">עומר ד. - סטודנט להנדסה</p>
 </div>
-<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal italic">"אהרון מקצוען אמיתי, יודע בדיוק איפה ללחוץ. הרגשתי שהכתפיים התפוסות שלי סוף סוף השתחררו. אחזור בטוח."</p>
-<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">יותם ל.</p>
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"הלחץ של סוף סמסטר גרם לי לחרדות ולשרירים תפוסים בכל הגוף. העיסוי אצל אהרון היה כמו לחיצת ריסט - גם לגוף וגם לנפש."</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">נועה ר. - סטודנטית למשפטים</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"עובד במשרד 10 שעות ביום והגב שלי סבל מזה שנים. אהרון פשוט קוסם - אחרי טיפול אחד הרגשתי הקלה משמעותית שנשארה איתי לאורך זמן."</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">רועי מ.</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"לא האמנתי כמה המתח הנפשי משפיע על הגוף עד שהגעתי לאהרון. הוא באמת מקשיב ויודע איך לגרום לך להרגיש טוב יותר - גם פיזית וגם רגשית."</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">ליאת ג.</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4 hover-glow">
+<div class="flex text-primary">
+<span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal italic">"כסטודנט למדעי המחשב אני יושב מול המסך שעות. הצוואר והכתפיים שלי היו נוראיים. אהרון שיחרר הכל ועזר לי לחזור ללמוד בלי כאבים!"</p>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-tight">יותם ל. - סטודנט</p>
 </div>
 </div>
-<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-8 scroll-mt-20 section-title" id="contact-form">מוכנים להירגע? דברו איתי 💌</h2>
-<div class="p-4">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-<div class="flex flex-col gap-4">
-<form class="flex flex-col gap-4">
-<input class="w-full h-10 px-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="שם מלא" type="text"/>
-<input class="w-full h-10 px-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="מספר טלפון" type="tel"/>
-<textarea class="w-full p-4 rounded-lg border border-[#e7ddd0] dark:border-gray-700 bg-background-light/80 dark:bg-gray-800 dark:text-text-dark focus:ring-primary focus:border-primary backdrop-blur-sm" placeholder="הודעה (אופציונלי)" rows="4"></textarea>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover-glow" type="submit">
-<span class="truncate">שליחת פניה</span>
-</button>
-</form>
+
+<!-- Call to Action Block -->
+<div class="p-4 pt-8">
+<div class="flex flex-col items-center justify-center gap-4 rounded-xl bg-primary/20 p-8 text-center">
+<h3 class="text-2xl font-bold text-text-light dark:text-text-dark">מוכנים להירגע? 💌</h3>
+<p class="text-base text-text-muted-light dark:text-text-muted-dark">העניקו לעצמכם את המתנה של שקט ושחרור. דברו איתי עוד היום.</p>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי" target="_blank" class="mt-2 flex items-center justify-center gap-2 cursor-pointer overflow-hidden rounded-xl h-12 px-5 bg-[#25D366] hover:bg-[#1da851] text-white text-base font-bold leading-normal tracking-[0.015em] hover-glow">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<span class="truncate">שלחו הודעה בוואטסאפ</span>
+</a>
 </div>
-<div class="flex flex-col gap-6">
-<div class="flex flex-col gap-2">
+</div>
+
+<!-- Contact Section -->
+<div id="contact-form" class="p-4 scroll-mt-20">
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3">יצירת קשר</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-4 rounded-xl bg-card-light dark:bg-card-dark p-4">
 <div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-2xl">location_on</span>
-<span class="text-text-light dark:text-text-dark text-base font-semibold">סוקולוv 32, באר שבע</span>
+<div class="text-text-light dark:text-text-dark flex items-center justify-center rounded-lg bg-icon-bg-light dark:bg-icon-bg-dark shrink-0 size-10"><span class="material-symbols-outlined">location_on</span></div>
+<span class="text-text-light dark:text-text-dark text-base font-semibold">סוקולוב 32, באר שבע</span>
 </div>
 <div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
-<iframe allowfullscreen="" class="w-full h-full" data-location="Sokolov 32, Be'er Sheva" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.942767098739!2d34.78761767562013!3d31.717140974120364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x150266052f9547d7%3A0x633a6b5a3c98c114!2sSokolov%2032%2C%20Be'er%20Sheva!5e0!3m2!1sen!2sil!4v1700487428131!5m2!1sen!2sil" style="border:0;"></iframe>
+<iframe allowfullscreen="" class="w-full h-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.942767098739!2d34.78761767562013!3d31.717140974120364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x150266052f9547d7%3A0x633a6b5a3c98c114!2sSokolov%2032%2C%20Be'er%20Sheva!5e0!3m2!1sen!2sil!4v1700487428131!5m2!1sen!2sil" style="border:0;"></iframe>
 </div>
 </div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-2xl">call</span>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 rounded-xl bg-card-light dark:bg-card-dark p-4">
+<div class="text-text-light dark:text-text-dark flex items-center justify-center rounded-lg bg-icon-bg-light dark:bg-icon-bg-dark shrink-0 size-10"><span class="material-symbols-outlined">call</span></div>
 <a class="text-text-light dark:text-text-dark text-base font-semibold" href="tel:055-8861571">055-8861571</a>
 </div>
+<a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי" target="_blank" class="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-4 px-6 rounded-xl transition-all hover-glow">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<span>שלחו הודעה בוואטסאפ</span>
+</a>
 </div>
 </div>
 </div>
-<footer class="text-center py-8 mt-12 border-t border-[#e7ddd0] dark:border-gray-700">
-<p class="text-secondary dark:text-gray-500 text-sm">© 2024 בין לב לארי. כל הזכויות שמורות.</p>
-</footer>
+
+<!-- Footer -->
+<div class="bg-card-light dark:bg-card-dark mt-4 p-6 text-center">
+<div class="flex justify-center gap-4 mb-4">
+<a class="text-text-muted-light dark:text-text-muted-dark text-3xl hover:text-primary transition-colors" href="#">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark text-3xl hover:text-primary transition-colors" href="#">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark text-3xl hover:text-[#25D366] transition-colors" href="https://wa.me/972558861571" target="_blank">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</a>
 </div>
-</main>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2024 לב ארי. כל הזכויות שמורות.</p>
 </div>
 </div>
 </body></html>
