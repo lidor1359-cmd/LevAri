@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html class="light" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>הצהרת בריאות | לב ארי - קליניקת עיסויים</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+  }
+</style>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#bca38f",
+          "background-light": "#f5f3f0",
+          "background-dark": "#2d2823",
+          "text-light": "#3d352e",
+          "text-muted-light": "#8b7e74",
+          "text-dark": "#f5f3f0",
+          "text-muted-dark": "#a99f96",
+          "card-light": "#ffffff",
+          "card-dark": "#3d352e",
+          "icon-bg-light": "#ece7e2",
+          "icon-bg-dark": "#52483f"
+        },
+        fontFamily: {
+          "display": ["Manrope", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  body {
+    min-height: 100dvh;
+  }
+
+  /* Signature canvas styles */
+  #signature-canvas {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Form input focus styles */
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #bca38f;
+    box-shadow: 0 0 0 3px rgba(188, 163, 143, 0.2);
+  }
+
+  /* Radio button styles */
+  input[type="radio"]:checked + span {
+    background-color: #bca38f;
+    color: white;
+  }
+
+  /* Conditional fields animation */
+  .details-field {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    margin-top: 0;
+  }
+
+  .details-field.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 0.75rem;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Error styles */
+  .error-border {
+    border-color: #ef4444 !important;
+  }
+
+  .error-text {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Success modal */
+  .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+</style>
+</head>
+<body dir="rtl">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-primary/20 p-4">
+  <a href="index.html" class="flex items-center justify-center gap-3">
+    <img src="og-image.jpeg" alt="לב ארי" class="w-10 h-10 rounded-full object-cover shadow-md">
+    <div class="text-center">
+      <h1 class="text-text-light dark:text-text-dark text-lg font-bold">לב ארי</h1>
+      <p class="text-text-muted-light dark:text-text-muted-dark text-xs">גוף · נשימה · תודעה</p>
+    </div>
+  </a>
+</header>
+
+<!-- Main Content -->
+<main class="flex-1 p-4 pb-8">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Form Header -->
+    <div class="text-center mb-6">
+      <h2 class="text-text-light dark:text-text-dark text-2xl font-bold mb-2">הצהרת בריאות</h2>
+      <p class="text-text-muted-light dark:text-text-muted-dark text-sm">אנא מלא/י את הטופס לפני הגעתך לטיפול</p>
+    </div>
+
+    <form id="health-form" class="space-y-6" novalidate>
+
+      <!-- Section 1: General Details -->
+      <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 shadow-sm">
+        <h3 class="text-text-light dark:text-text-dark text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">person</span>
+          פרטים כלליים
+        </h3>
+
+        <div class="space-y-4">
+          <!-- Full Name -->
+          <div>
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-2">שם מלא *</label>
+            <input type="text" name="fullName" required
+              class="w-full h-12 px-4 text-base rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+              placeholder="הכנס/י שם מלא">
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-2">טלפון *</label>
+            <input type="tel" name="phone" required
+              class="w-full h-12 px-4 text-base rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+              placeholder="050-0000000">
+          </div>
+
+          <!-- First Massage -->
+          <div>
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם זהו העיסוי הראשון שלך? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="firstMassage" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="firstMassage" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Treatment Goal -->
+          <div>
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-2">מהי מטרת הטיפול העיקרית? *</label>
+            <textarea name="treatmentGoal" required rows="2"
+              class="w-full px-4 py-3 text-base rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors resize-none"
+              placeholder="לדוגמה: הרפיה, כאבי גב, שחרור מתחים..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Current Medical Condition -->
+      <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 shadow-sm">
+        <h3 class="text-text-light dark:text-text-dark text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">emergency</span>
+          מצב רפואי נוכחי
+        </h3>
+
+        <div class="space-y-5">
+          <!-- Fever/Infection -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם סבלת מחום, זיהום או מחלה ויראלית ב-48 השעות האחרונות? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="fever" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="fever" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Swelling/Wound -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם קיימת נפיחות, דלקת, פצע פתוח או פריחה באזור מסוים בגוף? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="swelling" value="כן" required class="sr-only peer" data-show-details="swellingDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="swelling" value="לא" required class="sr-only peer" data-hide-details="swellingDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="swellingDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="swellingLocation"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="היכן?">
+            </div>
+          </div>
+
+          <!-- Surgery -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם עברת ניתוח או פרוצדורה פולשנית ב-6 החודשים האחרונים? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="surgery" value="כן" required class="sr-only peer" data-show-details="surgeryDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="surgery" value="לא" required class="sr-only peer" data-hide-details="surgeryDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="surgeryDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="surgeryInfo"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="איזה ניתוח/פרוצדורה?">
+            </div>
+          </div>
+
+          <!-- Pregnancy -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם הינך בהיריון? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="pregnancy" value="כן" required class="sr-only peer" data-show-details="pregnancyDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="pregnancy" value="לא" required class="sr-only peer" data-hide-details="pregnancyDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="pregnancyDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="pregnancyWeek"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="איזה שבוע?">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Medical History -->
+      <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 shadow-sm">
+        <h3 class="text-text-light dark:text-text-dark text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">medical_information</span>
+          היסטוריה רפואית
+        </h3>
+
+        <div class="space-y-5">
+          <!-- Blood Pressure -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם ידוע על בעיות בלחץ דם (גבוה/נמוך)? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="bloodPressure" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="bloodPressure" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Blood Clots -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם קיימת היסטוריה של קרישי דם (DVT) או נטילת מדללי דם? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="bloodClots" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="bloodClots" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Back Problems -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם הינך סובל/ת מבעיות גב, פריצות דיסק או בעיות במפרקים? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="backProblems" value="כן" required class="sr-only peer" data-show-details="backDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="backProblems" value="לא" required class="sr-only peer" data-hide-details="backDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="backDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="backLocation"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="איפה הבעיה?">
+            </div>
+          </div>
+
+          <!-- Chronic Disease -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם אובחנת במחלה כרונית (סוכרת, סרטן, מחלות לב, אפילפסיה)? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="chronicDisease" value="כן" required class="sr-only peer" data-show-details="chronicDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="chronicDisease" value="לא" required class="sr-only peer" data-hide-details="chronicDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="chronicDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="chronicInfo"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="איזו מחלה?">
+            </div>
+          </div>
+
+          <!-- Allergies -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם קיימת רגישות או אלרגיה לשמנים, ריחות או חומרים מסוימים? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="allergies" value="כן" required class="sr-only peer" data-show-details="allergiesDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="allergies" value="לא" required class="sr-only peer" data-hide-details="allergiesDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="allergiesDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="allergiesInfo"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="לאיזה חומרים יש לך רגישות?">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Lifestyle -->
+      <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 shadow-sm">
+        <h3 class="text-text-light dark:text-text-dark text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">favorite</span>
+          אורח חיים ונוחות
+        </h3>
+
+        <div class="space-y-5">
+          <!-- Sensitive Areas -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם יש אזורים בגוף שמהם יש להימנע או דורשים רגישות מיוחדת? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="sensitiveAreas" value="כן" required class="sr-only peer" data-show-details="sensitiveDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="sensitiveAreas" value="לא" required class="sr-only peer" data-hide-details="sensitiveDetails">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+            <div id="sensitiveDetails" class="details-field bg-primary/10 rounded-xl p-3">
+              <label class="block text-primary text-xs font-bold mb-2">אנא פרט/י:</label>
+              <input type="text" name="sensitiveInfo"
+                class="w-full h-12 px-4 text-base rounded-xl border-2 border-primary/30 bg-white dark:bg-card-dark text-text-light dark:text-text-dark transition-colors"
+                placeholder="אילו אזורים?">
+            </div>
+          </div>
+
+          <!-- Migraines -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם את/ה סובל/ת ממיגרנות או סחרחורות לעיתים קרובות? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="migraines" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="migraines" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Medical Devices -->
+          <div class="question-block">
+            <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">האם מותקנים בגופך אביזרים רפואיים (קוצב לב, פלטינות, ברגים)? *</label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="medicalDevices" value="כן" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">כן</span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="medicalDevices" value="לא" required class="sr-only peer">
+                <span class="flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-card-dark text-text-light dark:text-text-dark font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">לא</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Declaration & Signature -->
+      <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 shadow-sm">
+        <h3 class="text-text-light dark:text-text-dark text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">verified</span>
+          הצהרה ואישור
+        </h3>
+
+        <!-- Declaration Text -->
+        <div class="bg-icon-bg-light dark:bg-icon-bg-dark rounded-xl p-4 mb-5">
+          <p class="text-text-light dark:text-text-dark text-sm leading-relaxed">
+            "אני מצהיר/ה כי כל המידע שמסרתי לעיל הוא נכון ומלא למיטב ידיעתי. ידוע לי כי העיסוי אינו תחליף לייעוץ רפואי וכי באחריותי לעדכן את המטפל/ת בכל שינוי במצבי הבריאותי או בתחושת אי-נוחות במהלך הטיפול."
+          </p>
+        </div>
+
+        <!-- Confirmation Checkbox -->
+        <div class="mb-5">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" name="confirmation" required
+              class="mt-1 w-5 h-5 rounded border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0">
+            <span class="text-text-light dark:text-text-dark text-sm">אני מאשר/ת שקראתי והבנתי את ההצהרה לעיל *</span>
+          </label>
+        </div>
+
+        <!-- Signature -->
+        <div class="mb-4">
+          <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-3">חתימה דיגיטלית *</label>
+          <div class="relative">
+            <canvas id="signature-canvas"
+              class="w-full h-40 border-2 border-dashed border-primary/50 rounded-xl bg-white cursor-crosshair"></canvas>
+            <button type="button" id="clear-signature"
+              class="absolute top-2 left-2 bg-red-500/90 hover:bg-red-600 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors">
+              נקה
+            </button>
+          </div>
+          <p class="text-text-muted-light dark:text-text-muted-dark text-xs mt-2">חתום/י באצבע או בעכבר בתוך המסגרת</p>
+        </div>
+
+        <!-- Date (auto-filled) -->
+        <div>
+          <label class="block text-text-light dark:text-text-dark text-sm font-medium mb-2">תאריך</label>
+          <input type="text" id="form-date" readonly
+            class="w-full h-12 px-4 text-base rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-icon-bg-dark text-text-light dark:text-text-dark">
+        </div>
+      </div>
+
+      <!-- Error Message Container -->
+      <div id="error-container" class="hidden bg-red-50 border border-red-200 rounded-xl p-4">
+        <p class="text-red-600 text-sm font-medium flex items-center gap-2">
+          <span class="material-symbols-outlined text-lg">error</span>
+          <span id="error-message">אנא מלא/י את כל השדות הנדרשים</span>
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+        class="w-full h-14 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">send</span>
+        שלח הצהרת בריאות
+      </button>
+
+    </form>
+  </div>
+</main>
+
+<!-- Success Modal -->
+<div id="success-modal" class="fixed inset-0 z-50 hidden">
+  <div class="modal-backdrop absolute inset-0"></div>
+  <div class="relative flex items-center justify-center min-h-screen p-4">
+    <div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 max-w-sm w-full shadow-2xl">
+      <div class="text-center mb-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+        </div>
+        <h3 class="text-text-light dark:text-text-dark text-xl font-bold mb-2">כמעט סיימנו!</h3>
+        <p class="text-text-muted-light dark:text-text-muted-dark text-sm">
+          הטופס מוכן לשליחה. לחץ/י על הכפתור למטה לשליחה בוואטסאפ.
+        </p>
+      </div>
+
+      <div class="bg-icon-bg-light dark:bg-icon-bg-dark rounded-xl p-3 mb-4">
+        <p class="text-text-light dark:text-text-dark text-xs text-center">
+          <span class="font-bold">שים/י לב:</span> קובץ החתימה יורד אוטומטית. אנא צרף/י אותו להודעה.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <button id="send-whatsapp"
+          class="w-full h-12 bg-[#25D366] hover:bg-[#1da851] text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          שלח בוואטסאפ
+        </button>
+        <button id="close-modal"
+          class="w-full h-10 bg-gray-200 hover:bg-gray-300 dark:bg-icon-bg-dark dark:hover:bg-gray-600 text-text-light dark:text-text-dark font-medium rounded-xl transition-all text-sm">
+          סגור
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-card-light dark:bg-card-dark p-4 text-center border-t border-primary/10">
+  <p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2024 לב ארי. כל הזכויות שמורות.</p>
+</footer>
+
+</div>
+
+<script>
+// ===========================================
+// Signature Pad Class
+// ===========================================
+class SignaturePad {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.isDrawing = false;
+    this.lastX = 0;
+    this.lastY = 0;
+
+    this.setupCanvas();
+    this.bindEvents();
+  }
+
+  setupCanvas() {
+    const rect = this.canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    this.canvas.width = rect.width * dpr;
+    this.canvas.height = rect.height * dpr;
+
+    this.ctx.scale(dpr, dpr);
+    this.canvas.style.width = rect.width + 'px';
+    this.canvas.style.height = rect.height + 'px';
+
+    this.ctx.strokeStyle = '#3d352e';
+    this.ctx.lineWidth = 2.5;
+    this.ctx.lineCap = 'round';
+    this.ctx.lineJoin = 'round';
+  }
+
+  bindEvents() {
+    // Mouse events
+    this.canvas.addEventListener('mousedown', this.startDrawing.bind(this));
+    this.canvas.addEventListener('mousemove', this.draw.bind(this));
+    this.canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
+    this.canvas.addEventListener('mouseout', this.stopDrawing.bind(this));
+
+    // Touch events
+    this.canvas.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+    this.canvas.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
+    this.canvas.addEventListener('touchend', this.stopDrawing.bind(this));
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+      this.setupCanvas();
+      this.ctx.putImageData(imageData, 0, 0);
+    });
+  }
+
+  getPosition(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    if (e.touches) {
+      return {
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top
+      };
+    }
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
+  handleTouchStart(e) {
+    e.preventDefault();
+    this.startDrawing(e);
+  }
+
+  handleTouchMove(e) {
+    e.preventDefault();
+    this.draw(e);
+  }
+
+  startDrawing(e) {
+    this.isDrawing = true;
+    const pos = this.getPosition(e);
+    this.lastX = pos.x;
+    this.lastY = pos.y;
+  }
+
+  draw(e) {
+    if (!this.isDrawing) return;
+
+    const pos = this.getPosition(e);
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.lastX, this.lastY);
+    this.ctx.lineTo(pos.x, pos.y);
+    this.ctx.stroke();
+
+    this.lastX = pos.x;
+    this.lastY = pos.y;
+  }
+
+  stopDrawing() {
+    this.isDrawing = false;
+  }
+
+  clear() {
+    const rect = this.canvas.getBoundingClientRect();
+    this.ctx.clearRect(0, 0, rect.width, rect.height);
+  }
+
+  isEmpty() {
+    const rect = this.canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const pixelData = this.ctx.getImageData(0, 0, rect.width * dpr, rect.height * dpr).data;
+    return !pixelData.some((channel, index) => index % 4 === 3 && channel !== 0);
+  }
+
+  toDataURL(quality = 0.8) {
+    return this.canvas.toDataURL('image/jpeg', quality);
+  }
+}
+
+// ===========================================
+// Initialize
+// ===========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize signature pad
+  const canvas = document.getElementById('signature-canvas');
+  const signaturePad = new SignaturePad(canvas);
+
+  // Clear signature button
+  document.getElementById('clear-signature').addEventListener('click', () => {
+    signaturePad.clear();
+  });
+
+  // Set current date
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('he-IL', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  document.getElementById('form-date').value = dateStr;
+
+  // ===========================================
+  // Conditional Details Fields
+  // ===========================================
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const showDetails = e.target.dataset.showDetails;
+      const hideDetails = e.target.dataset.hideDetails;
+
+      if (showDetails) {
+        document.getElementById(showDetails)?.classList.add('show');
+      }
+      if (hideDetails) {
+        document.getElementById(hideDetails)?.classList.remove('show');
+      }
+    });
+  });
+
+  // ===========================================
+  // Form Validation & Submission
+  // ===========================================
+  const form = document.getElementById('health-form');
+  const errorContainer = document.getElementById('error-container');
+  const errorMessage = document.getElementById('error-message');
+  const modal = document.getElementById('success-modal');
+
+  let formData = {};
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    errorContainer.classList.add('hidden');
+    document.querySelectorAll('.error-border').forEach(el => el.classList.remove('error-border'));
+
+    // Validate form
+    const errors = validateForm();
+
+    if (errors.length > 0) {
+      errorMessage.textContent = errors[0];
+      errorContainer.classList.remove('hidden');
+      errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Collect form data
+    formData = collectFormData();
+
+    // Show success modal
+    modal.classList.remove('hidden');
+  });
+
+  function validateForm() {
+    const errors = [];
+
+    // Required text fields
+    const fullName = form.querySelector('[name="fullName"]');
+    if (!fullName.value.trim()) {
+      errors.push('נא למלא שם מלא');
+      fullName.classList.add('error-border');
+    }
+
+    const phone = form.querySelector('[name="phone"]');
+    const phoneValue = phone.value.replace(/[-\s]/g, '');
+    if (!phoneValue || !/^0[5-9]\d{7,8}$/.test(phoneValue)) {
+      errors.push('נא להזין מספר טלפון תקין');
+      phone.classList.add('error-border');
+    }
+
+    const treatmentGoal = form.querySelector('[name="treatmentGoal"]');
+    if (!treatmentGoal.value.trim()) {
+      errors.push('נא למלא את מטרת הטיפול');
+      treatmentGoal.classList.add('error-border');
+    }
+
+    // Required radio buttons
+    const radioGroups = [
+      'firstMassage', 'fever', 'swelling', 'surgery', 'pregnancy',
+      'bloodPressure', 'bloodClots', 'backProblems', 'chronicDisease',
+      'allergies', 'sensitiveAreas', 'migraines', 'medicalDevices'
+    ];
+
+    radioGroups.forEach(name => {
+      const checked = form.querySelector(`[name="${name}"]:checked`);
+      if (!checked) {
+        errors.push('נא לענות על כל השאלות');
+      }
+    });
+
+    // Confirmation checkbox
+    const confirmation = form.querySelector('[name="confirmation"]');
+    if (!confirmation.checked) {
+      errors.push('נא לאשר את ההצהרה');
+    }
+
+    // Signature
+    if (signaturePad.isEmpty()) {
+      errors.push('נא לחתום על הטופס');
+    }
+
+    return [...new Set(errors)]; // Remove duplicates
+  }
+
+  function collectFormData() {
+    const data = {
+      fullName: form.querySelector('[name="fullName"]').value.trim(),
+      phone: form.querySelector('[name="phone"]').value.trim(),
+      firstMassage: form.querySelector('[name="firstMassage"]:checked')?.value || '',
+      treatmentGoal: form.querySelector('[name="treatmentGoal"]').value.trim(),
+      fever: form.querySelector('[name="fever"]:checked')?.value || '',
+      swelling: form.querySelector('[name="swelling"]:checked')?.value || '',
+      swellingLocation: form.querySelector('[name="swellingLocation"]')?.value.trim() || '',
+      surgery: form.querySelector('[name="surgery"]:checked')?.value || '',
+      surgeryInfo: form.querySelector('[name="surgeryInfo"]')?.value.trim() || '',
+      pregnancy: form.querySelector('[name="pregnancy"]:checked')?.value || '',
+      pregnancyWeek: form.querySelector('[name="pregnancyWeek"]')?.value.trim() || '',
+      bloodPressure: form.querySelector('[name="bloodPressure"]:checked')?.value || '',
+      bloodClots: form.querySelector('[name="bloodClots"]:checked')?.value || '',
+      backProblems: form.querySelector('[name="backProblems"]:checked')?.value || '',
+      backLocation: form.querySelector('[name="backLocation"]')?.value.trim() || '',
+      chronicDisease: form.querySelector('[name="chronicDisease"]:checked')?.value || '',
+      chronicInfo: form.querySelector('[name="chronicInfo"]')?.value.trim() || '',
+      allergies: form.querySelector('[name="allergies"]:checked')?.value || '',
+      allergiesInfo: form.querySelector('[name="allergiesInfo"]')?.value.trim() || '',
+      sensitiveAreas: form.querySelector('[name="sensitiveAreas"]:checked')?.value || '',
+      sensitiveInfo: form.querySelector('[name="sensitiveInfo"]')?.value.trim() || '',
+      migraines: form.querySelector('[name="migraines"]:checked')?.value || '',
+      medicalDevices: form.querySelector('[name="medicalDevices"]:checked')?.value || '',
+      date: document.getElementById('form-date').value
+    };
+
+    return data;
+  }
+
+  function formatWhatsAppMessage(data) {
+    let message = `*הצהרת בריאות חדשה*\n\n`;
+    message += `*שם:* ${data.fullName}\n`;
+    message += `*טלפון:* ${data.phone}\n`;
+    message += `*עיסוי ראשון:* ${data.firstMassage}\n`;
+    message += `*מטרת הטיפול:* ${data.treatmentGoal}\n\n`;
+
+    message += `*מצב רפואי נוכחי:*\n`;
+    message += `• חום/זיהום ב-48 שעות: ${data.fever}\n`;
+    message += `• נפיחות/פצע פתוח: ${data.swelling}${data.swellingLocation ? ` - ${data.swellingLocation}` : ''}\n`;
+    message += `• ניתוח ב-6 חודשים: ${data.surgery}${data.surgeryInfo ? ` - ${data.surgeryInfo}` : ''}\n`;
+    message += `• היריון: ${data.pregnancy}${data.pregnancyWeek ? ` - שבוע ${data.pregnancyWeek}` : ''}\n\n`;
+
+    message += `*היסטוריה רפואית:*\n`;
+    message += `• לחץ דם: ${data.bloodPressure}\n`;
+    message += `• קרישי דם/מדללי דם: ${data.bloodClots}\n`;
+    message += `• בעיות גב/מפרקים: ${data.backProblems}${data.backLocation ? ` - ${data.backLocation}` : ''}\n`;
+    message += `• מחלה כרונית: ${data.chronicDisease}${data.chronicInfo ? ` - ${data.chronicInfo}` : ''}\n`;
+    message += `• אלרגיות: ${data.allergies}${data.allergiesInfo ? ` - ${data.allergiesInfo}` : ''}\n\n`;
+
+    message += `*אורח חיים:*\n`;
+    message += `• אזורים רגישים: ${data.sensitiveAreas}${data.sensitiveInfo ? ` - ${data.sensitiveInfo}` : ''}\n`;
+    message += `• מיגרנות/סחרחורות: ${data.migraines}\n`;
+    message += `• אביזרים רפואיים: ${data.medicalDevices}\n\n`;
+
+    message += `*הצהרה:* אושרה ✓\n`;
+    message += `*תאריך:* ${data.date}\n\n`;
+    message += `_החתימה תישלח בקובץ נפרד_`;
+
+    return message;
+  }
+
+  function downloadSignature() {
+    const dataURL = signaturePad.toDataURL(0.8);
+    const link = document.createElement('a');
+    link.download = `חתימה-${formData.fullName}-${Date.now()}.jpg`;
+    link.href = dataURL;
+    link.click();
+  }
+
+  // Modal buttons
+  document.getElementById('send-whatsapp').addEventListener('click', () => {
+    // Download signature first
+    downloadSignature();
+
+    // Open WhatsApp
+    const message = formatWhatsAppMessage(formData);
+    const whatsappURL = `https://wa.me/972558861571?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+
+    // Close modal after a short delay
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 1000);
+  });
+
+  document.getElementById('close-modal').addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  // Close modal on backdrop click
+  modal.querySelector('.modal-backdrop').addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+});
+</script>
+
+</body>
+</html>
