@@ -66,6 +66,23 @@
     .animate-pulse-slow {
       animation: pulse-slow 4s ease-in-out infinite;
     }
+    /* Background slideshow */
+    .bg-slideshow {
+      position: relative;
+      background-color: #2d2823;
+    }
+    .bg-slideshow .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .bg-slideshow .bg-slide.active {
+      opacity: 1;
+    }
   </style>
 </head>
 <body dir="rtl">
@@ -104,16 +121,28 @@
 
 <!-- Philosophy Card -->
 <div class="p-4 @container">
-<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start bg-card-light dark:bg-card-dark overflow-hidden">
-<div class="w-full bg-center bg-no-repeat aspect-video bg-cover @xl:rounded-l-none @xl:rounded-r-xl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDetkI_ZxmjAndI_7ijFxUAyw4Tye1-7gn8YHoe3BXdJMWwxNZ5defa0QHM0wV430R0uH0mhqY_tEwxoa-tz4zMFWgHFCrvrMKQ7jcgrFOOX0ncPjYxeIpaBVem3kF3Cs0b_9MlsXfO2EkEgPWdFDbdqD6DjXgJp2P-Xhba3mkfxf7imyHxaqKQCIJXoyj3YtBZa6eGZEUw99-au9-x99HinVNcIl9ve8pisINwvgXtFM8Fdo2bIurrXhEn9pTBSAp_ws_U4qlwkrvV");'></div>
-<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-3 p-4 @xl:px-4">
-<p class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-[-0.015em]">להתחבר מחדש – לגוף, לנשימה, לתודעה, לעצמך.</p>
-<p class="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-relaxed">
+<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-stretch bg-card-light dark:bg-card-dark overflow-hidden">
+<div class="w-full @xl:w-1/2 @xl:rounded-l-none @xl:rounded-r-xl overflow-hidden">
+<img src="DSC01051.jpg" alt="אהרון בקליניקה" class="w-full h-full object-cover rounded-xl @xl:rounded-l-none @xl:rounded-r-xl">
+</div>
+<div class="bg-slideshow relative w-full @xl:w-1/2 flex flex-col items-stretch justify-center min-h-[300px]">
+<!-- Background slides -->
+<div class="bg-slide active" style="background-image: url('DSC00952.jpg');"></div>
+<div class="bg-slide" style="background-image: url('DSC01118.jpg');"></div>
+<div class="bg-slide" style="background-image: url('DSC00961.jpg');"></div>
+<div class="bg-slide" style="background-image: url('DSC01254.jpg');"></div>
+<!-- Dark overlay -->
+<div class="absolute inset-0 bg-black/50 z-10"></div>
+<!-- Text content -->
+<div class="relative z-20 flex flex-col items-center justify-center gap-4 p-6 text-center">
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">להתחבר מחדש – לגוף, לנשימה, לתודעה, לעצמך.</p>
+<p class="text-white/90 text-base font-normal leading-relaxed max-w-2xl">
 בקליניקה שלי תמצאו מרחב שמזמין אתכם להתחבר מחדש לעצמכם – לגוף שנותן נוכחות וחיבור לעצמנו ולעולם, לנשימה שמאפשרת זרימה, שיחרור ושלווה, לתודעה שנותנת ביטחון ובהירות, וחיבור לתחושות ולרגשות שקיימים בנו.
 </p>
-<p class="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-relaxed">
+<p class="text-white/90 text-base font-normal leading-relaxed max-w-2xl">
 כל טיפול, כל תנועה וכל מגע נבנה כדי ליצור מסע פנימי, שבו תוכלו לשחרר מה שמכביד, לחוות חיות ואנרגיה, ולהרגיש שלמים, אמיתיים ונוכחים ברגע.
 </p>
+</div>
 </div>
 </div>
 </div>
@@ -123,7 +152,7 @@
 <div class="flex flex-col items-center gap-4 rounded-xl bg-card-light dark:bg-card-dark p-6 text-center">
 <div>
 <h3 class="text-lg font-bold text-text-light dark:text-text-dark">נעים להכיר, אני אהרון ✨</h3>
-<p class="text-base text-text-muted-light dark:text-text-muted-dark mt-2">אני אהרון ישראל לב ארי, ירושלמי במקור, סטודנט לפסיכותרפיה גופנית. אחריי למעלה מ-350 יום מילואים מאז אירועי ה-07.10 בעזה ולבנון. החלטתי לעבור לבאר שבע מתוך חוויה אישית של שירות ולמידה עמוקה של הגוף. אני יוצר בקליניקה מרחב מחבר ומקרקע — מקום שבו אפשר לעצור, לנשום ולחזור לעצמך. 🫂</p>
+<p class="text-base text-text-muted-light dark:text-text-muted-dark mt-2">אני אהרון ישראל לב ארי, סטודנט לפסיכותרפיה גופנית. אחרי שירות מילואים ממושך מאז אירועי ה-07.10 בעזה ולבנון. מתוך חוויה אישית של שירות ולמידה עמוקה של הגוף, אני יוצר בקליניקה מרחב מחבר ומקרקע — מקום שבו אפשר לעצור, לנשום ולחזור לעצמך. 🫂</p>
 </div>
 <a href="https://wa.me/972558861571?text=היי%20אהרון%2C%20אשמח%20לקבוע%20תור%20לעיסוי" target="_blank" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white font-bold py-3 px-6 rounded-full transition-all hover-glow">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -290,4 +319,21 @@
 <p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2024 לב ארי. כל הזכויות שמורות.</p>
 </div>
 </div>
+
+<script>
+// Background slideshow
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.bg-slideshow .bg-slide');
+  let currentSlide = 0;
+  const slideInterval = 4000; // 4 seconds per slide
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  setInterval(nextSlide, slideInterval);
+});
+</script>
 </body></html>
